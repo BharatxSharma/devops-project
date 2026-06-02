@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps App</title>
+</head>
+<body>
+  <h1>🚀 Frontend is working</h1>
+  <button onclick="callAPI()">Call Backend</button>
+
+  <script>
+    function callAPI() {
+      fetch('/api/health')
+        .then(res => res.text())
+        .then(data => alert(data));
+    }
+  </script>
+</body>
+</html>

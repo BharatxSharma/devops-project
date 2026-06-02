@@ -1,0 +1,48 @@
+const express = require("express");
+const mongoose = require("mongoose");
+
+const fs = require("fs");
+
+const mongoPassword = fs
+  .readFileSync("/run/secrets/mongo_password", "utf8")
+  .trim();
+
+console.log("Mongo Password:", mongoPassword);
+
+const app = express();
+
+app.use(express.json());
+
+// Connect MongoDB
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
+
+// Schema
+const Post = mongoose.model("Post", {
+  title: String
+});
+
+// Create data
+app.post("/post", async (req, res) => {
+  const post = new Post({ title: req.body.title });
+  await post.save();
+  res.json(post);
+});
+
+// Get data
+app.get("/posts", async (req, res) => {
+  const posts = await Post.find();
+  res.json(posts);
+});
+
+// Health
+app.get("/health", (req, res) => {
+  res.json({ status: "OK" });
+});
+
+const PORT = process.env.PORT || ;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
