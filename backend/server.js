@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const os = require("os");
 
-const mongoPassword = fs
-  .readFileSync("/run/secrets/mongo_password", "utf8")
-  .trim();
+// ~/devops-project/backend/server.jsconst mongoPassword = fs
+// .readFileSync("/run/secrets/mongo_password", "utf8")
+//  .trim();
 
-console.log("Mongo Secret Loaded:", mongoPassword);
+// console.log("Mongo Secret Loaded:", mongoPassword);
 
 const app = express();
 
