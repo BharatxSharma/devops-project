@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const os = require("os");
 
-// ~/devops-project/backend/server.jsconst mongoPassword = fs
+//  const mongoPassword = fs
 // .readFileSync("/run/secrets/mongo_password", "utf8")
 //  .trim();
 
